@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css" />
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="./img/favicon.png" type="image/x-icon"> 
+  <title>WomanReact</title>
+
+  <!-- SCRIPT MAP-->
+  <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1549984893" />
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+  <!--END MAP-->
+
+  <!--NAVBAR-->
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <button class="navbar-toggler colorMenuIcon" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+      aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon "></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="colorMenu" href="#">¿Quiénes somos?</a>
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="colorMenu" href="#" data-toggle="modal" data-target="#exampleModalAmigos">Locales amigos<span
+              class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="colorMenu" href="#" data-toggle="modal" data-target="#exampleModalVoluntario">¿Quieres ser
+            voluntario?</a>
+        </li>
+        <li class="nav-item">
+          <a class="colorMenu" href="#" tabindex="-1" aria-disabled="true">Teléfonos de emergencia</a>
+        </li>
+        <li class="nav-item">
+          <a class="colorMenu" href="#" tabindex="-1" aria-disabled="true">Fono abuso</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--END NAVBAR-->
+
+</head>
+
+<body>
+<!-- ALERT (location) -->
+  <div class="container">
+    <div class="row">
+      <div class="col">
+    <div class="alert alert-dismissible2 fade show mx-auto" role="alert">
+    <p>Permitir acceso a ubicación</p>
+    <button type="button" data-dismiss="alert" class="btn" aria-label="Close">Aceptar
+    </button>
+    </div>
+  </div>
+  </div>
+  </div>
+<!-- END ALERT -->
+
+  <!--MAP-->
+  <div id="map" style="width: 100%; height: 180px; background: grey">
+    <script type="text/javascript" charset="UTF-8">
+      function addMarkersToMap(map) {
+        var metroMarker = new H.map.Marker({
+          lat: -33.4086,
+          lng: -70.5676
+        });
+        map.addObject(metroMarker);
+
+        var crisMarker = new H.map.Marker({
+          lat: -33.4101,
+          lng: -70.5731
+        });
+        map.addObject(crisMarker);
+
+        var laboratoriaMarker = new H.map.Marker({
+          lat: -33.4106,
+          lng: -70.5721
+        });
+        map.addObject(laboratoriaMarker);
+
+        var donPepeMarker = new H.map.Marker({
+          lat: -33.4108,
+          lng: -70.5734
+        });
+        map.addObject(donPepeMarker);
+
+        var laEsquinaMarker = new H.map.Marker({
+          lat: -33.4090,
+          lng: -70.5688
+        });
+        map.addObject(laEsquinaMarker);
+
+        var espacioRMarker = new H.map.Marker({
+          lat: -33.4093,
+          lng: -70.5683
+        });
+        map.addObject(espacioRMarker);
+
+        var amandyMarker = new H.map.Marker({
+          lat: -33.4088,
+          lng: -70.5684
+        });
+        map.addObject(amandyMarker);
+
+        var doloresMarker = new H.map.Marker({
+          lat: -33.4091,
+          lng: -70.5695
+        });
+        map.addObject(doloresMarker);
+      }
+      /**
+       * Boilerplate map initialization code starts below:
+       */
+
+      //Step 1: initialize communication with the platform
+      //Step 1: initialize communication with the platform
+      var platform = new H.service.Platform({
+        app_id: 'udzTJfhO9r9b435re5Hk',
+        app_code: '34x0qKJ9qPQVFkeJ-ldnQA',
+        useHTTPS: true
+      });
+      var pixelRatio = window.devicePixelRatio || 1;
+      var defaultLayers = platform.createDefaultLayers({
+        tileSize: pixelRatio === 1 ? 256 : 512,
+        ppi: pixelRatio === 1 ? undefined : 320
+      });
+
+      //Step 2: initialize a map - this map is centered over Europe
+      var map = new H.Map(document.getElementById('map'),
+        defaultLayers.normal.map, {
+          center: {
+            lat: -33.4089,
+            lng: -70.5691
+          },
+          zoom: 17,
+          pixelRatio: pixelRatio
+        });
+
+      //Step 3: make the map interactive
+      // MapEvents enables the event system
+      // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+      var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+      // Create the default UI components
+      var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+      // Now use the map as required...
+      addMarkersToMap(map);
+    </script>
+  </div>
+  <!--END MAP-->
+
+  <!--SEARCH-->
+  <div class="form-inline col-12 col-md-5 justify-content-center align-items-center pt-2 pb-2">
+    <input class="form-control col-8" type="search" id="movie" class="searchButton" placeholder="Buscar zona segura"
+      aria-label="Search">
+    <button class="btn btn-light col-4" type="button" onclick="find()" data-toggle="modal"
+      data-target="#modalFind"><img src="img/lupita.svg"></button>
+  </div>
+  <!--SEARCH-->
+
+  <!--ZONA DE SEGURIDAD-->
+  <div class="container">
+    <div class="row">
+    <button type="button" id="zoneButton" class="buttonZone" data-toggle="modal" data-target="#exampleModal">Zona de
+      seguridad</button>
+    </div>
+  </div>  
+  <!-- FIN ZONA DE SEGURIDAD -->
+
+  <!-- REGISTRAR COMENTARIO -->
+  <div class="container">
+    <div class="row">
+    <button type="button" id="buttonLogin" class="buttonLoginP" data-toggle="modal"
+      data-target="#exampleModalLogin">Registrar tu comentario</button>
+    </div>
+  </div>
+  <!--FIN REGISTRAR COMENTARIO -->
+
+  <!-- REGISTRA COMENTARIO MODAL-->
+  <div class="modal fade" id="exampleModalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLogin"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabelLogin">Registra tu comentario:</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                </div>
+                <textarea class="form-control" aria-label="With textarea"></textarea>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FIN REGISTRA COMENTARIO MODAL-->
+
+  <!--PHRASE-->
+  <div>
+    <p class="cita">"Defiende tu vida, lucha por tu independencia y busca tu felicidad" </p>
+    <p class="author"><b>Izaskun González</b></p>
+  </div>
+  <!--END PHRASE-->
+
+  <!--COMMENT BOX-->
+  <div class="container">
+    <div class="row">
+        <div class="card">
+        <h4><b>Tú nos importas:</b> cuéntanos tu experiencia en la Zona Segura</h4>
+        <div class="dropdown">
+            <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              ¿Qué Zona?
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Santiago</a>
+              <a class="dropdown-item" href="#">Proviencia</a>
+              <a class="dropdown-item" href="#">Las Condes</a>
+            </div>
+          </div>
+          <textarea class="form-control" aria-label="With textarea"></textarea>
+            <button type="button" class="btn btn-primary">Enviar</button>
+        </div>
+    </div>
+  </div>
+  <!--END COMMENT BOX-->
+
+  <!-- Modal Voluntario-->
+  <div class="modal fade" id="exampleModalVoluntario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabelVoluntario">Postula</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img src="img/Voluntario.png" class="buttonVoluntary" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fin Modal voluntario-->
+
+  <!-- Modal zona segura -->
+  <div class="container">
+    <div class="row">
+      <div class="col">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Zona Segura</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img src="img/Group 4.png"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+  <!-- Fin Modal zona segura -->
+
+  
+  <!-- Modal Locales amigos -->
+  <div class="modal fade" id="exampleModalAmigos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabelAmigos">Busca tu zona</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img src="img/localesamigos.png" class="storesFriends" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Fin modal locales amigos-->
+  <!--SCRIPT BOOTSTRAP-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <!--END SCRIPT BOOTSTRAP-->
+  <script src="./app.js"></script>
+</body>
+
+</html>

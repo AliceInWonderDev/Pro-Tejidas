@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
+    <title>WomanReact</title>
+
+
+        <!--MAP-->
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1549984893" />
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+    <!--END MAP-->
+    
+    <!--NAVBAR-->
+    <nav class="navbar navbar-expand-lg navbar-light ">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <li class="nav-item">
+                <a class="navbar-brand" href="#">¿Quiénes somos?</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="navbar-brand" href="#">Locales amigos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#">¿Quieres ser voluntario?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" tabindex="-1" aria-disabled="true">Teléfonos de emergencia</a>
+                </li>
+                <li class="nav-item">
+                        <a class="navbar-brand" href="#" tabindex="-1" aria-disabled="true">Fono abuso</a>
+                </li>
+                </ul>
+            </div>
+            </nav>
+    <!--END NAVBAR-->
+
+</head>
+
+<body>
+    <!--INICIO MAPA-->
+   
+            <div id="map" style="width: 100%; height: 200px; background: grey" >
+            <script  type="text/javascript" charset="UTF-8" >
+            function addMarkersToMap(map) {
+    var metroMarker = new H.map.Marker({lat:-33.4228, lng:-70.6450});
+    map.addObject(metroMarker);
+   
+    var romeMarker = new H.map.Marker({lat:41.9, lng: 12.5});
+    map.addObject(romeMarker);
+  
+    var berlinMarker = new H.map.Marker({lat:52.5166, lng:13.3833});
+    map.addObject(berlinMarker);
+  
+    var madridMarker = new H.map.Marker({lat:40.4, lng: -3.6833});
+    map.addObject(madridMarker);
+  
+    var londonMarker = new H.map.Marker({lat:51.5008, lng:-0.1224});
+    map.addObject(londonMarker);
+  }
+                /**
+                 * Boilerplate map initialization code starts below:
+                 */
+                
+                //Step 1: initialize communication with the platform
+              //Step 1: initialize communication with the platform
+var platform = new H.service.Platform({
+  app_id: 'udzTJfhO9r9b435re5Hk',
+  app_code: '34x0qKJ9qPQVFkeJ-ldnQA',
+  useHTTPS: true
+});
+var pixelRatio = window.devicePixelRatio || 1;
+var defaultLayers = platform.createDefaultLayers({
+  tileSize: pixelRatio === 1 ? 256 : 512,
+  ppi: pixelRatio === 1 ? undefined : 320
+});
+
+//Step 2: initialize a map - this map is centered over Europe
+var map = new H.Map(document.getElementById('map'),
+  defaultLayers.normal.map,{
+  center: {lat:-33.40644, lng:-70.63951},
+  zoom: 4,
+  pixelRatio: pixelRatio
+});
+
+//Step 3: make the map interactive
+// MapEvents enables the event system
+// Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+// Create the default UI components
+var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+// Now use the map as required...
+addMarkersToMap(map);
+</script>               
+    </div>
+    <!--FIN MAPA-->
+
+<!--SEARCH-->
+<form class="form-inline my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Búsca el local más cercano" aria-label="Search">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+</form>
+<!--SEARCH-->
+
+    <!--BOTÓN-->
+    <p></p>
+    <div>
+            <button type="button" class="buttonZone">Zona de seguridad</button>
+        </div>
+    <!--FIN BOTÓN-->
+
+<!--PHRASE-->
+    <div class="message">
+        <p>
+            <br>"Defiende tu vida, lucha por tu independencia, busca tu felicidad y aprende a quererte" <br>
+            <b> Izaskun González </b>
+        </p>
+    </div>
+<!--END PHRASE-->
+
+
+
+<!--COMMENT BOX-->
+<div class="card">
+    <input type="input" class="card-header" placeholder="Nombre(Opcional)"/>
+    <div class="card-body">
+        <input type="input" class="card-text" placeholder="¿Qué tal tu experiencia en tu zona de seguridad?"/>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="#" class="btn btn-primary">Enviar</a>
+    </div>
+</div>    
+<!--END COMMENT BOX-->
+
+
+<!--SCRIPT BOOTSTRAP-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!--END SCRIPT BOOTSTRAP-->
+<script src="app.js"></script>
+</body>
+</html>
